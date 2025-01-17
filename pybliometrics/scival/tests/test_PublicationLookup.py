@@ -12,6 +12,7 @@ def test_publication():
     assert pub1.doi == "10.1002/anie.201709271"
     assert pub1.type == "Article"
     assert pub1.publication_year == 2017
+    assert pub1.source_title == 'Angewandte Chemie - International Edition'
     assert pub1.citation_count > 0
     assert len(pub1.authors) >= 7
     assert pub1.authors[0].id == 7404861905

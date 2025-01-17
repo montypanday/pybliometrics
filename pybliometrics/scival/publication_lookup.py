@@ -85,6 +85,29 @@ class PublicationLookup(Retrieval):
         """Sustainable Development Goals."""
         return chained_get(self._json, ['publication', 'sdg'])
 
+    def __str__(self):
+        """Print a summary string."""
+        authors = ', '.join(a.name for a in self.authors) if self.authors else "N/A"
+        institutions = ', '.join(i.name for i in self.institutions) if self.institutions else "N/A"
+        sdgs = ', '.join(self.sdgs) if self.sdgs else "N/A"
+        s = (
+            f"Publication Summary:\n"
+            f"- ID: {self.id or 'N/A'}\n"
+            f"- Title: {self.title or 'N/A'}\n"
+            f"- DOI: {self.doi or 'N/A'}\n"
+            f"- Type: {self.type or 'N/A'}\n"
+            f"- Year: {self.publication_year or 'N/A'}\n"
+            f"- Citation Count: {self.citation_count or 'N/A'}\n"
+            f"- Source Title: {self.source_title or 'N/A'}\n"
+            f"- Topic ID: {self.topic_id or 'N/A'}\n"
+            f"- Topic Cluster ID: {self.topic_cluster_id or 'N/A'}\n"
+            f"- Link: {self.link or 'N/A'}\n"
+            f"- Authors: {authors}\n"
+            f"- Institutions: {institutions}\n"
+            f"- SDGs: {sdgs}\n"
+        )
+        return s
+
     def __init__(self,
                  identifier: int = None,
                  refresh: Union[bool, int] = False,
